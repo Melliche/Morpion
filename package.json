@@ -1,0 +1,26 @@
+{
+  "name": "intregration-starter-theme",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm run build-clean && npm run build-sass && npm run build-autoprefix && npm run build-cleancss",
+    "build-autoprefix": "postcss --use autoprefixer --map false --output css/styles.css css/styles.css",
+    "build-cleancss": "cleancss -o css/styles.css css/styles.css",
+    "build-clean": "rimraf css",
+    "build-sass": "node-sass --output-style expanded --source-map true sass/styles.sass css/styles.css",
+    "deploy": "npm run build",
+    "assets": "copyfiles -f src/css/*.css dist/css",
+    "start": "npm run build-sass -- --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^9.8.0",
+    "clean-css-cli": "^4.3.0",
+    "node-sass": "^4.14.1",
+    "postcss-cli": "^6.1.3",
+    "rimraf": "^2.7.1"
+  },
+  "main": "index.js",
+  "description": "",
+  "dependencies": {}
+}
