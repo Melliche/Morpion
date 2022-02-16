@@ -1,4 +1,5 @@
-let nbcaseclick = 0
+let playerstart;
+let tour = 0
 let i = 1
 isgreen = false
 
@@ -16,17 +17,28 @@ function creategrid () {
     i++;
     if (i > 9) {
         clearTimeout(time);
+        starter();
     }
 }
 
+function starter() {
+	let tour1 = Math.floor(Math.random() * 2 + 1);
+	playerstart = 'p'+tour1;
+	start();
+}
+
+function start () {
+    
+}
+
 numero.onclick = function () {
-    if (nbcaseclick == 0 || 2 || 4 || 6 || 8){
-        nbcaseclick++
+    if (tour == 0 || 2 || 4 || 6 || 8){
+        tour++
         let id = this.id
         document.getElementById(id).style.backgroundColor = "blue";
     }
     else{
-        nbcaseclick++
+        tour++
         
     }
 }
