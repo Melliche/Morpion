@@ -1,5 +1,6 @@
 let nbcaseclick = 0
 let i = 1
+isgreen = false
 
 function creategrid () {
     console.log("hehe")
@@ -20,8 +21,13 @@ function creategrid () {
 
 numero.onclick = function () {
     if (nbcaseclick == 0 || 2 || 4 || 6 || 8){
+        nbcaseclick++
         let id = this.id
         document.getElementById(id).style.backgroundColor = "blue";
     }
-
+    else{
+        nbcaseclick++
+        
+    }
 }
+
