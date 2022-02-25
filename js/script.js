@@ -1,6 +1,5 @@
 let playerstart;
 let tour = 0
-// let i = 1
 let idclick;
 let listcase = [];
 let idrdm;
@@ -21,11 +20,15 @@ for (let i = 1; i < 10; i++){
     }
 } 
 
+
+
 let onClick = function click() {
     console.log(this.id);
     idclick = this.id;
-    startplayer();
-    return idclick
+    console.log(listcase.indexOf(idclick))
+    if (listcase.indexOf(parseInt(idclick)) == -1){
+        startplayer();
+    }
 }
 
 for (let i = 1; i < 10; i++){
@@ -41,7 +44,6 @@ function starter() {
 
 function start () {
     if (playerstart == 1){
-        // startplayer();
     }else{
         botstart = true;
         startbot();
@@ -55,11 +57,13 @@ function pair (nbr){
 function startplayer () {
     tour++;
     console.log("eben")
-    listcase.push(parse&Int(idclick));
+    listcase.push(parseInt(idclick));
     document.getElementById(idclick).style.backgroundColor = "blue";
     botturn = true;
     console.log(botturn)
+    if (listcase.length <= 8)
     startbot();
+
 }
 
 function startbot () {
@@ -74,10 +78,14 @@ function startbot () {
     if (botstart == false || botturn == true ){
         console.log(botturn)
         console.log(listcase)
-         while (idrdm == listcase[1] || idrdm == listcase[2] || idrdm == listcase[3] || idrdm == listcase[4] || idrdm == listcase[5] || idrdm == listcase[6] || idrdm == listcase[7] || idrdm == listcase[8] || idrdm == listcase[9] || idrdm == listcase[0]){
-            console.log(botturn)
+        idrdmgood = false
+         while (idrdmgood == false){
             idrdm = Math.floor(Math.random() * 9 + 1)
-            console.log(idrdm) 
+            if (listcase.indexOf(parseInt(idrdm)) == -1){
+                idrdmgood = true
+                console.log(botturn)       
+                console.log(idrdm) 
+            } 
         }
         listcase.push(parseInt(idrdm));  
         document.getElementById(idrdm).style.backgroundColor = "red"; 
@@ -85,9 +93,20 @@ function startbot () {
     }
 }
 
+// while (eben = true){
+//     if
+//     console.log(botturn)
+//     idrdm = Math.floor(Math.random() * 9 + 1)
+//     console.log(idrdm) 
+// }
+// listcase.push(parseInt(idrdm));  
+// document.getElementById(idrdm).style.backgroundColor = "red"; 
+// botturn = false;
+// }
 
-
-
+// listcase.includes(idrdm) = true
+// idrdm == listcase.indexOf(1,2,3,4,5,6,7,8,9)
+// while (idrdm == listcase[1] || idrdm == listcase[2] || idrdm == listcase[3] || idrdm == listcase[4] || idrdm == listcase[5] || idrdm == listcase[6] || idrdm == listcase[7] || idrdm == listcase[8] || idrdm == listcase[9] || idrdm == listcase[0]){
 
 
 
