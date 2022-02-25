@@ -47,7 +47,6 @@ function start () {
         startbot();
     }
 }
-
 function pair (nbr){
     if (nbr%2 == 0){
     }
@@ -56,36 +55,34 @@ function pair (nbr){
 function startplayer () {
     tour++;
     console.log("eben")
-    listcase.push(idclick);
+    listcase.push(parse&Int(idclick));
     document.getElementById(idclick).style.backgroundColor = "blue";
     botturn = true;
     console.log(botturn)
     startbot();
-  
 }
 
 function startbot () {
     if (playerstart != 1 && tour < 2){
         tour++;
         let idrdm = Math.floor(Math.random() * 9 + 1)
-        listcase.push(idrdm);  
+        listcase.push(parseInt(idrdm));   
         document.getElementById(idrdm).style.backgroundColor = "red"; 
         console.log("START")
         console.log(idrdm) 
     }
     if (botstart == false || botturn == true ){
         console.log(botturn)
+        console.log(listcase)
          while (idrdm == listcase[1] || idrdm == listcase[2] || idrdm == listcase[3] || idrdm == listcase[4] || idrdm == listcase[5] || idrdm == listcase[6] || idrdm == listcase[7] || idrdm == listcase[8] || idrdm == listcase[9] || idrdm == listcase[0]){
             console.log(botturn)
             idrdm = Math.floor(Math.random() * 9 + 1)
             console.log(idrdm) 
         }
+        listcase.push(parseInt(idrdm));  
         document.getElementById(idrdm).style.backgroundColor = "red"; 
         botturn = false;
     }
-   
-    
-
 }
 
 
