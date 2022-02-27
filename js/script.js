@@ -97,31 +97,47 @@ function startbot () {
     lastid = idrdm;
     // console.log(win[0].includes(lastid))
     if (botstart == false || botturn == true ){
-        idrdmgood = false
+        let idrdmgood = false;
         while (idrdmgood == false){
             idrdm = Math.floor(Math.random() * 9 + 1)
-            if (listcase.indexOf(parseInt(idrdm)) == -1){
+            if (listcase.indexOf(parseInt(idrdm)) == -1  ){
                 idrdmgood = true     
             } 
         }
-        if ( win[0].includes(lastid) == true && playercase.indexOf(parseInt(win[0])) == -1 &&  playercase.indexOf(parseInt(lastid)) == -1    ) { // SI win[0] contient premier rouge et bleu != win[0]
-            // console.log("VERIFF")
-            result = win[0].filter(victory => victory != lastid && victory != botcase ) ; // élément = win[0] différent de IDRDM
- 
-            
-            //dabord le trouver dans autre variablle en,ssuite le mettre
-            console.log(result + "result")
-            found = result.find(element => element > 0 && element != botcase[0] && element != botcase[1] && element != botcase[2]  ); // element different de IDRDM,  > 0  et > idrdm <
-            if (found != idclick){
-                idrdm = found; 
-            }
-            
-     
-            
-            // result = win[0].filter(victory => victory != lastid && victory != botcase ) ;
-            // found = result.find(element => element > 0 && element > idrdm || element < idrdm );
+        
+        for (let i = 0; i < 8; i++) {
+            if (win[i].includes(playercase) == false && win[i].includes(lastid) == true && playercase.indexOf(parseInt(win[i])) == -1  && playercase.indexOf(parseInt(lastid)) == -1 ) { 
+        
+                console.log("VERIFF") 
+                result = win[i].filter(victory => victory != lastid && victory != botcase ) ; 
+                found = result.find(element => element > 0 && element != botcase[i]);
+                // si 2 element rouge dans un win => 3eme = good
 
+                
+                // let rat = win[i].filter(rot => rot == getOccurrence(botcase, win[i][0], win[i][1], win[i][2] ));
+                let rat = win[i].filter(rot => rot == botcase[0]  || rot == botcase[1] || rot == botcase[2] || rot == botcase[3] || rot == botcase[4] || rot == botcase[5] || rot == botcase[6] || rot == botcase[7]);
+                console.log(rat+"rat")
+                if ( rat.length == 2){
+                    let thinkfound = win[i].filter(victor => victor != rat[0] && victor != rat[1]);
+                    if (listcase.indexOf(parseInt(thinkfound)) == -1) {
+                        found =thinkfound;
+                    }
+                    console.log(rat + "RATTTT")
+                }
+
+                if (listcase.indexOf(parseInt(found)) == -1){
+                    rat = win[i].filter(rot => rot == botcase[0]  || rot == botcase[1] || rot == botcase[2] || rot == botcase[3] || rot == botcase[4] || rot == botcase[5] || rot == botcase[6] || rot == botcase[7]);
+                    // if () {
+
+                    // }
+                    idrdm = found; 
+
+                    break
+                    // found != listcase[i] 
+                }
+            }
         }
+        
         botcase.push(parseInt(idrdm));
         listcase.push(parseInt(idrdm));  
         // botcase.push(parseInt(idrdm));
@@ -134,8 +150,8 @@ function startbot () {
 
 // && win[0].filter(victori => victori != botcase
 
-function getOccurrence(array, value) {
-    return array.filter((v) => (v === value)).length;
+function getOccurrence(array, value, value1, value2) {
+    return array.filter((v) => (v === value) && (v === value1) && (v === value2)).length;
 }
 
 
@@ -145,11 +161,11 @@ function victory (){
         if (win[i].every(ai => playercase.includes(ai)) == true){
             console.log("WINNNER PLAYER");
             winner = "player";
-            document.getElementById("score").innerHTML = "Le Joueur a Gagné !"
+            document.getElementById("score").innerHTML = "Le Joueur a Gagné !";
         }else if (win[i].every(ai => botcase.includes(ai)) == true){
-            console.log("WINNNER BOT")
+            console.log("WINNNER BOT");
             winner = "bot";
-            document.getElementById("score").innerHTML = "Le Bot a Gagné !"
+            document.getElementById("score").innerHTML = "Le Bot a Gagné !";
         }
     }
 
