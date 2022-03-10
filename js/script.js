@@ -95,6 +95,13 @@ function startbot () {
                 idrdmgood = true     
             } 
         }
+
+        // Si la premère case du joueur est un coin, le bot joue la case du milieu.
+        if (playerstart == 1 && playercase.length == 1) {
+            if (playercase[0] == 1 || playercase[0] == 3 || playercase[0] == 7 || playercase[0] == 9 ) {
+                idselect = 5;
+            }
+        }
         
         // Si le bot est à une case de la condition de victoire, il selectionne la bonne case
         let ratchoice = true;
